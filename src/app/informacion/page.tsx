@@ -3,6 +3,7 @@ import React from 'react';
 export default function InformacionPage() {
   const youtubeChannelUrl = "https://www.youtube.com/@Doslocosyuncolao/";
   const facebookPageUrl = "https://www.facebook.com/profile.php?id=61590373832211";
+  const instagramPageUrl = "https://www.instagram.com/doslocosyuncolao/";
 
   return (
     <main className="min-h-screen bg-[#0B0B0B] text-[#F3F4F6] px-4 py-16 pb-24">
@@ -89,9 +90,27 @@ export default function InformacionPage() {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5 text-red-500">
                       <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                     </svg>
-                    <span className="text-sm font-bold text-neutral-200 group-hover:text-white transition-colors">YouTube Canal</span>
+                    <span className="text-sm font-bold text-neutral-200 group-hover:text-white transition-colors">YouTube</span>
                   </div>
                   <span className="text-xs font-semibold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-md border border-red-500/10 group-hover:border-red-500/30">Principal</span>
+                </a>
+
+                {/* Botón Instagram */}
+                <a 
+                  href={instagramPageUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-between p-3.5 rounded-xl bg-pink-600/5 border border-pink-900/20 hover:bg-pink-600/10 hover:border-pink-500/40 transition-all group"
+                >
+                  <div className="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-pink-500">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                    </svg>
+                    <span className="text-sm font-bold text-neutral-200 group-hover:text-white transition-colors">Instagram</span>
+                  </div>
+                  <span className="text-xs font-semibold text-pink-400 bg-pink-500/10 px-2 py-0.5 rounded-md border border-pink-500/10 group-hover:border-pink-500/30">Contenido</span>
                 </a>
 
                 {/* Botón Facebook */}
