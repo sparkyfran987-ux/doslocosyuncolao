@@ -14,9 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body>
+      <body className="bg-[#0A0A0A] text-white antialiased">
         <Navbar />
-        {children}
+        {/* Quitamos el pt-20 para eliminar el cuadro negro fantasma */}
+        <div>
+          {children}
+        </div>
       </body>
     </html>
   );
