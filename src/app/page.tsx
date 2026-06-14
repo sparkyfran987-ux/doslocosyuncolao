@@ -1,131 +1,111 @@
-import Hero from "@/components/Hero";
+import React from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-export default function Home() {
-  const fbPageUrl = encodeURIComponent("https://www.facebook.com/profile.php?id=61590373832211");
-
-  // Cartelera con títulos ocultos bajo el blur
-  const proximosEpisodios = [
-    { numero: "01", titulo: "El Revolú del Entretenimiento", fecha: "Estreno Lunes 15 de Junio", estado: "estreno" },
-    { numero: "02", titulo: "Episodio Secreto Oculto Backstage", fecha: "Lunes, 22 de Junio", estado: "espera" },
-    { numero: "03", titulo: "Contenido Confidencial No Revelado", fecha: "Lunes, 29 de Junio", estado: "espera" },
-    { numero: "04", titulo: "Historias Secretas Detrás de Cámara", fecha: "Lunes, 06 de Julio", estado: "espera" },
-    { numero: "05", titulo: "Gran Cierre de Temporada Sorpresa", fecha: "Lunes, 13 de Julio", estado: "espera" },
-  ];
-
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#0B0B0B] text-[#F3F4F6] pb-24">
-      {/* 1. Banner Principal */}
-      <Hero />
+    <main 
+      className="min-h-screen bg-[#050505] text-white overflow-hidden relative pb-24"
+      style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif' }}
+    >
+      {/* 📸 IMAGEN DE FONDO DEL HERO CON MÁSCARA CINEMÁTICA */}
+      <div className="absolute top-0 left-0 w-full h-[70vh] md:h-[85vh] z-0 pointer-events-none opacity-40">
+        <Image 
+          src="/doslocos.jpg" 
+          alt="Dos Locos y un Colao en el estudio"
+          fill
+          priority
+          className="object-cover object-top"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/20 via-[#050505]/70 to-[#050505]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505]" />
+      </div>
 
-      {/* 2. Sección Contenido Dividido (Facebook + Lista de Episodios con Animación Hover) */}
-      <section className="max-w-6xl mx-auto px-4 py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          
-          {/* COLUMNA IZQUIERDA: FEED DE FACEBOOK */}
-          <div className="space-y-6">
-            <div className="border-l-4 border-[#E5A93C] pl-4">
-              <h2 className="text-2xl font-black uppercase tracking-wider text-white">
-                Últimas Publicaciones
-              </h2>
-              <p className="text-sm text-neutral-400">Sigue la actividad directo desde su página</p>
-            </div>
+      {/* EFECTOS DE RESPLANDOR DE ESTUDIO (GLOWS MULTICOLOR) */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-amber-500/10 blur-[140px] rounded-full pointer-events-none z-0" />
+      <div className="absolute top-[60%] left-1/3 w-[400px] h-[400px] bg-red-600/5 blur-[130px] rounded-full pointer-events-none z-0" />
 
-            {/* Contenedor del Iframe de Facebook */}
-            <div className="w-full bg-[#161616] rounded-3xl p-5 border border-neutral-800/60 shadow-2xl flex justify-center overflow-hidden max-w-xl mx-auto lg:mx-0">
-              <iframe 
-                src={`https://www.facebook.com/plugins/page.php?href=${fbPageUrl}&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true`}
-                width="500" 
-                height="600" 
-                style={{ border: 'none', overflow: 'hidden' }} 
-                scrolling="no" 
-                frameBorder="0" 
-                allowFullScreen={true} 
-                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                className="rounded-2xl max-w-full bg-neutral-900"
-              />
-            </div>
+      {/* HERO SECTION */}
+      <section className="max-w-5xl mx-auto px-4 pt-20 md:pt-32 text-center relative z-10 space-y-8">
+        {/* Etiqueta de Estreno */}
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-md animate-pulse">
+          <span className="w-2 h-2 rounded-full bg-red-500" />
+          <span className="text-xs font-black uppercase tracking-widest text-[#E5A93C]">
+            Estreno: Lunes 15 de Junio
+          </span>
+        </div>
+
+        {/* Título Monumental */}
+        <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none bg-gradient-to-b from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent max-w-4xl mx-auto drop-shadow-[0_10px_10px_rgba(0,0,0,0.9)]">
+          Dos Locos <br /> <span className="text-[#E5A93C]">y un Colao</span>
+        </h1>
+
+        <p className="text-neutral-300 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-[0_4px_6px_rgba(0,0,0,0.8)]">
+          Tres mentes con años de experiencia en eventos, artistas y backstage production metidas en el revolú definitivo del entretenimiento.
+        </p>
+
+        {/* Botones de Acción */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <Link href="/episodios" className="w-full sm:w-auto px-8 py-4 font-black uppercase tracking-widest text-sm rounded-2xl bg-white text-black hover:bg-neutral-200 transition-all shadow-2xl active:scale-95">
+            Ver Episodios
+          </Link>
+          <Link href="/informacion" className="w-full sm:w-auto px-8 py-4 font-black uppercase tracking-widest text-sm rounded-2xl bg-white/[0.05] border border-white/10 text-white hover:bg-white/[0.1] transition-all backdrop-blur-md active:scale-95">
+            Sponsor / Contacto
+          </Link>
+        </div>
+      </section>
+
+      {/* 📹 SECCIÓN DEL EMBED DE FACEBOOK RESTAURADA */}
+      <section className="max-w-xl mx-auto px-4 mt-28 relative z-10">
+        <div className="text-center mb-8">
+          <span className="text-xs font-black text-blue-400 uppercase tracking-widest bg-blue-500/5 px-3 py-1 rounded-md border border-blue-500/10">
+            COMUNIDAD
+          </span>
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight mt-3">Últimas Publicaciones</h2>
+        </div>
+
+        {/* Contenedor con el Embed Oficial que muestra la página en vivo */}
+        <div className="w-full bg-white/[0.02] border border-white/[0.06] rounded-3xl p-4 backdrop-blur-md shadow-2xl shadow-black flex justify-center">
+          <div className="w-full max-w-[500px] h-[500px] rounded-2xl overflow-hidden bg-black/40">
+            <iframe 
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61590373832211&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 'none', overflow: 'hidden' }} 
+              allowFullScreen={true} 
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              className="w-full h-full"
+            />
           </div>
+        </div>
+      </section>
 
-          {/* COLUMNA DERECHA: LISTA DE EPISODIOS ENIGMÁTICOS CON MOVIMIENTO */}
-          <div className="space-y-6">
-            <div className="border-l-4 border-[#9B1C1C] pl-4">
-              <h2 className="text-2xl font-black uppercase tracking-wider text-white">
-                Próximos Episodios
-              </h2>
-              <p className="text-sm text-neutral-400">Cartelera de lanzamientos confirmados</p>
-            </div>
+      {/* SECCIÓN MUESTRA DE CONTENIDO DE IMPACTO */}
+      <section className="max-w-5xl mx-auto px-4 mt-32 relative z-10">
+        <div className="text-center md:text-left mb-10">
+          <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight">Próximamente en el Show</h2>
+          <p className="text-sm text-neutral-500 mt-1">Lo que te espera en cada episodio semanal.</p>
+        </div>
 
-            {/* Lista estructurada con efectos de movimiento (Hover) */}
-            <div className="space-y-4 max-w-xl mx-auto lg:mx-0">
-              {proximosEpisodios.map((ep) => (
-                <div 
-                  key={ep.numero} 
-                  className={`p-5 rounded-2xl border relative overflow-hidden flex items-center min-h-[92px] bg-[#161616]/20 border-neutral-900/60 cursor-pointer 
-                    transition-all duration-300 ease-out 
-                    hover:-translate-y-1.5 hover:bg-[#161616]/40 
-                    ${
-                      ep.estado === 'estreno' 
-                        ? 'border-red-900/40 hover:border-red-500/30 shadow-md hover:shadow-xl hover:shadow-red-950/20' 
-                        : 'hover:border-neutral-700/50 shadow-sm hover:shadow-lg hover:shadow-black/40'
-                    }`}
-                >
-                  
-                  {/* 🔴 CAPA EN EL MEDIO PARA EL EPISODIO 1 (ROJO Y PARPADEANTE) */}
-                  {ep.estado === 'estreno' && (
-                    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/20">
-                      <div className="flex items-center gap-2 bg-[#9B1C1C] border border-red-500/40 px-5 py-2.5 rounded-xl shadow-xl animate-pulse">
-                        <span className="w-2 h-2 rounded-full bg-white shadow-md" />
-                        <span className="text-sm font-black tracking-wider text-white uppercase">
-                          {ep.fecha}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* 🔒 CAPA EN EL MEDIO PARA LOS EPISODIOS FUTUROS (NEUTRO CON CANDADO) */}
-                  {ep.estado === 'espera' && (
-                    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-black/10">
-                      <div className="flex items-center gap-2 bg-black/80 border border-neutral-800 px-4 py-2 rounded-xl shadow-xl backdrop-blur-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="#E5A93C" className="w-4 h-4 shrink-0">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                        </svg>
-                        <span className="text-xs font-black tracking-wide text-neutral-300 uppercase">
-                          {ep.fecha}
-                        </span>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* 👁️ CONTENIDO DISTORSIONADO DE FONDO (Permanece estático y borroso) */}
-                  <div className="w-full flex items-center gap-4 transition-all blur-[7px] opacity-25 scale-[0.98] pointer-events-none select-none">
-                    
-                    {/* Número ficticio */}
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm shrink-0 bg-neutral-900 text-neutral-600 border border-neutral-800">
-                      {ep.numero}
-                    </div>
-
-                    {/* Textos de relleno tapados por el blur */}
-                    <div className="space-y-1 flex-1">
-                      <span className="text-xs font-bold tracking-wider uppercase text-neutral-400">
-                        Próximamente
-                      </span>
-                      <h3 className="font-bold text-base md:text-lg text-white">
-                        {ep.titulo}
-                      </h3>
-                    </div>
-
-                  </div>
-
-                </div>
-              ))}
-            </div>
-
-            {/* Recordatorio inferior */}
-            <p className="text-xs text-center lg:text-left text-neutral-500 font-medium max-w-xl mx-auto lg:mx-0 pt-2">
-              📌 Los títulos y reproductores oficiales se habilitarán exclusivamente en la pestaña de <span className="text-neutral-400 font-semibold">«Episodios»</span> al llegar su fecha.
-            </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Feature 1 */}
+          <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all group hover:-translate-y-1 backdrop-blur-sm">
+            <div className="text-3xl mb-4">🎙️</div>
+            <h3 className="text-lg font-black uppercase tracking-wider mb-2 group-hover:text-[#E5A93C] transition-colors">Backstage Real</h3>
+            <p className="text-sm text-neutral-400 leading-relaxed">Anécdotas crudas, historias sin filtro de producciones masivas y lo que pasa detrás de las cortinas.</p>
           </div>
-
+          {/* Feature 2 */}
+          <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all group hover:-translate-y-1 backdrop-blur-sm">
+            <div className="text-3xl mb-4">⚡</div>
+            <h3 className="text-lg font-black uppercase tracking-wider mb-2 group-hover:text-[#E5A93C] transition-colors">Invitados Bomba</h3>
+            <p className="text-sm text-neutral-400 leading-relaxed">Artistas, productores y figuras clave que vienen a sentarse en la mesa a hablar claro.</p>
+          </div>
+          {/* Feature 3 */}
+          <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/[0.05] hover:border-white/10 transition-all group hover:-translate-y-1 backdrop-blur-sm">
+            <div className="text-3xl mb-4">🔥</div>
+            <h3 className="text-lg font-black uppercase tracking-wider mb-2 group-hover:text-[#E5A93C] transition-colors">El Revolú Colectivo</h3>
+            <p className="text-sm text-neutral-400 leading-relaxed">Análisis con humor picante e irreverente de la industria del entretenimiento.</p>
+          </div>
         </div>
       </section>
     </main>
