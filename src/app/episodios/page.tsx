@@ -57,7 +57,7 @@ export default function EpisodiosPage() {
         {/* 🎥 1. ARRIBA: VIDEO PRINCIPAL GRANDE */}
         <div className="space-y-4">
           <h2 className="text-lg font-black uppercase tracking-wider text-neutral-300 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#FF6B00] animate-pulse shadow-[0_0_8px_#FF6B00]" /> Último Episodio
+            <span className="w-2 h-2 rounded-full bg-[#FF6B00] animate-pulse shadow-[0_0_8px_#FF6B00]" /> Anuncio
           </h2>
           <div className="w-full bg-neutral-900/40 border border-white/[0.06] hover:border-[#FF6B00]/30 rounded-3xl p-3 md:p-5 backdrop-blur-md shadow-2xl transition-all duration-300">
             <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black/80">
