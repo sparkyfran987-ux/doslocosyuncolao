@@ -3,11 +3,37 @@ import React from 'react';
 export default function EpisodiosPage() {
   const youtubeChannelUrl = "https://www.youtube.com/@Doslocosyuncolao/";
 
+  // 📋 LISTA DE EPISODIOS
+  // Modifica la propiedad 'ocultar' (true = con blur / false = visible) para cada uno
   const listaEpisodios = [
-    { numero: "01", titulo: "Episodio Secreto Revelado", fecha: "Lunes, 15 de Junio", estado: "estreno" },
-    { numero: "02", titulo: "Contenido Altamente Confidencial", fecha: "Lunes, 22 de Junio", estado: "proximamente" },
-    { numero: "03", titulo: "Anécdotas Prohibidas Del Backstage", fecha: "Lunes, 29 de Junio", estado: "proximamente" },
-    { numero: "04", titulo: "El Revolú Definitivo Del Show", fecha: "Lunes, 6 de Julio", estado: "proximamente" },
+    { 
+      numero: "01", 
+      titulo: "Dos Locos Y Un Colao - Por Primera Vez...", 
+      fecha: "Lunes, 15 de Junio", 
+      estado: "estreno", 
+      ocultar: false // El primer episodio ya sale limpio
+    },
+    { 
+      numero: "02", 
+      titulo: "Contenido Altamente Confidencial", 
+      fecha: "Lunes, 22 de Junio", 
+      estado: "proximamente", 
+      ocultar: true // Cambia a false cuando quieras ver el título en tu editor
+    },
+    { 
+      numero: "03", 
+      titulo: "Anécdotas Prohibidas Del Backstage", 
+      fecha: "Lunes, 29 de Junio", 
+      estado: "proximamente", 
+      ocultar: true 
+    },
+    { 
+      numero: "04", 
+      titulo: "El Revolú Definitivo Del Show", 
+      fecha: "Lunes, 6 de Julio", 
+      estado: "proximamente", 
+      ocultar: true 
+    },
   ];
 
   return (
@@ -97,7 +123,7 @@ export default function EpisodiosPage() {
                 rel="noopener noreferrer" 
                 className="w-full max-w-xs inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#FF6B00] hover:bg-[#E05E00] text-black font-black text-xs uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl shadow-[#FF6B00]/20"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93 $.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 Ir al Canal de YouTube
               </a>
             </div>
@@ -105,7 +131,7 @@ export default function EpisodiosPage() {
 
         </div>
 
-        {/* 📋 3. ABAJO TOTAL: RE-ALINEACIÓN ORIGINAL (CUADROS ALARGADOS) */}
+        {/* 📋 3. ABAJO TOTAL: GUÍA DE LANZAMIENTOS */}
         <div className="space-y-6 pt-6">
           <div className="border-b border-white/10 pb-4">
             <h2 className="text-xl font-black uppercase tracking-wider text-white">
@@ -130,7 +156,7 @@ export default function EpisodiosPage() {
                     {ep.numero}
                   </span>
                   
-                  {/* CENTRO: Textos de estreno, fecha y título con blur */}
+                  {/* CENTRO: Textos de estreno, fecha y título */}
                   <div className="space-y-0.5 text-left">
                     <span className={`text-[10px] font-black uppercase tracking-widest block ${
                       ep.estado === 'estreno' ? 'text-[#FF6B00]' : 'text-neutral-400'
@@ -140,7 +166,11 @@ export default function EpisodiosPage() {
                     <h3 className="font-black text-sm md:text-lg uppercase tracking-tight text-white leading-tight">
                       {ep.fecha}
                     </h3>
-                    <p className="text-xs font-bold uppercase tracking-widest text-neutral-500/40 blur-[4px] select-none pt-0.5">
+                    
+                    {/* El blur depende directamente de la propiedad 'ocultar' de este episodio */}
+                    <p className={`text-xs font-bold uppercase tracking-widest select-none pt-0.5 transition-all duration-300 ${
+                      ep.ocultar ? 'blur-[4px] text-neutral-500/40' : 'blur-none text-neutral-400'
+                    }`}>
                       {ep.titulo}
                     </p>
                   </div>
